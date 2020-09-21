@@ -30,7 +30,7 @@ cp ~/ccna/ccna.sh /home/pi/dontdelete/vid/hidds/ccna.sh
 
 rand=$[RANDOM%10+1]
 
-rand=4 #remove this
+#rand=4 #remove this
 if [ $rand = 1 ]; then
 #    i "One"
     #c "Command"
@@ -145,10 +145,45 @@ if [ $rand = 4 ]; then
     c "%SYS-5-CONFIG_I: Configured from console by console"
 fi
 if [ $rand = 5 ]; then
-    echo "Five"
+    i "The password is cisco"
+    c "User Access Verification"
+    input "Password:" "cisco"
+    i "Enter privileged EXEC mode"
+    input "sw-floor-1>" "enable" 
+    i "The password is class"
+    input "Password:" "class"
+    i "Change the IP of the switch to 223.1.1.5 with a mast of 255.255.255.0"
+    input "sw-floor-1#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z."
+    input "sw-floor-1(config)#" "interface vlan 1"
+    input "sw-floor-1(config-if)#" "ip address 223.1.1.5 225.225.225.0"
+    input "sw-floor-1(config-if)#" "no shutdown"
+    c "%LINK-5-CHANGED: Interface Vlan1, changed state to up"
+    c "%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up"
+    i "Set the default gateway to 223.1.1.1"
+    input "sw-floor-1(config-if)#" "exit"
+    input "sw-floor-1(config)#" "ip default-gateway 223.1.1.1"
+    i "Type exit"
+    input "sw-floor-1(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
+
+
+
 fi
 if [ $rand = 6 ]; then
-    echo "Six"
+    i "The password is cisco"
+    c "User Access Verification"
+    input "Password:" "cisco"
+    i "Enter privileged EXEC mode"
+    input "sw-floor-1>" "enable" 
+    i "The password is class"
+    input "Password:" "class"
+    i "Copy the running configuration to the startup configuration"
+    input "sw-floor-1#" "copy running-config startup-config"
+    c "Destination filename [startup-config]?"
+    c "Building configuration..."
+    c "[OK]"
+    i "Good job!"
 fi
 if [ $rand = 7 ]; then
     echo "Seven"
