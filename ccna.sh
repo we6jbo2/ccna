@@ -30,7 +30,7 @@ cp ~/ccna/ccna.sh /home/pi/dontdelete/vid/hidds/ccna.sh
 
 rand=$[RANDOM%10+1]
 
-rand=1 #remove this
+rand=2 #remove this
 if [ $rand = 1 ]; then
 #    i "One"
     #c "Command"
@@ -67,7 +67,16 @@ if [ $rand = 1 ]; then
     i "You successfully navigated between the various IOS command line modes."
 fi
 if [ $rand = 2 ]; then
-    echo "Two"
+    i "Enter privileged EXEC mode"
+    input "Switch>" "enable"
+    i "Change the host name to sw-floor-1"
+    input "Switch#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z"
+    input "Switch(config)#" "hostname sw-floor-1"
+    i "Type exit a couple of times"
+    input "sw-floor-1(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
+    input "sw-floor-1#" "exit"
 fi
 if [ rand = 3 ]; then
     echo "Three"
