@@ -30,7 +30,7 @@ cp ~/ccna/ccna.sh /home/pi/dontdelete/vid/hidds/ccna.sh
 
 rand=$[RANDOM%10+1]
 
-rand=3 #remove this
+rand=4 #remove this
 if [ $rand = 1 ]; then
 #    i "One"
     #c "Command"
@@ -78,7 +78,7 @@ if [ $rand = 2 ]; then
     c "%SYS-5-CONFIG_I: Configured from console by console"
     input "sw-floor-1#" "exit"
 fi
-if [ rand = 3 ]; then
+if [ $rand = 3 ]; then
     i "Enter privileged EXEC mode"
     input "sw-floor-1>" "enable"
     i "Add the password, cisco, to line console 0"
@@ -128,7 +128,21 @@ if [ rand = 3 ]; then
 
 fi
 if [ $rand = 4 ]; then
-    echo "four"
+    i "The password is cisco"
+    c "User Access Verification"
+    input "Password:" "cisco"
+    i "Enter privileged EXEC mode"
+    input "sw-floor-1>" "enable" 
+    i "The password is class"
+    input "Password:" "class"
+    i "Change the message of the day"
+    input "sw-floor-1#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z."
+    i "Use the following message: #private#"
+    input "sw-floor-1(config)#" "banner motd #private#"
+    i "Type exit"
+    input "sw-floor-1(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
 fi
 if [ $rand = 5 ]; then
     echo "Five"
