@@ -30,7 +30,7 @@ cp ~/ccna/ccna.sh /home/pi/dontdelete/vid/hidds/ccna.sh
 
 rand=$[RANDOM%10+1]
 
-rand=2 #remove this
+rand=3 #remove this
 if [ $rand = 1 ]; then
 #    i "One"
     #c "Command"
@@ -79,7 +79,53 @@ if [ $rand = 2 ]; then
     input "sw-floor-1#" "exit"
 fi
 if [ rand = 3 ]; then
-    echo "Three"
+    i "Enter privileged EXEC mode"
+    input "sw-floor-1>" "enable"
+    i "Add the password, cisco, to line console 0"
+    input "sw-floor-1#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z."
+    input "sw-floor-1(config)#" "line console 0"
+    input "sw-floor-1(config-line)#" "password cisco"
+    input "sw-floor-1(config-line)#" "login"
+    i "Type exit"
+    input "sw-floor-1(config-line)#" "exit"
+    i "Type exit again"
+    input "sw-floor-1(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
+    i "Console access will now require a password before allowing access to the user EXEC mode"
+    i "Next, secure privileged EXEC access using the password, class."
+    input "sw-floor-1#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z."
+    input "sw-floor-1(config)#" "enable secret class"
+    i "Type exit"
+    input "sw-floor-1(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
+    i "Virtual terminal (VTY) lines enable remote access using Telnet or SSH to the device."
+    i "Secure VTY lines. Use password, cisco"
+    input "sw-floor-1#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z."
+    input "sw-floor-1(config)#" "line vty 0 15"
+    input "sw-floor-1(config-line)#" "password cisco"
+    input "sw-floor-1(config-line)#" "login"
+    i "Type exit."
+    input "sw-floor-1(config-line)#" "exit"
+    i "Type exit, again."
+    input "sw-floor-1(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
+    i "The startup-config and running-config files display most passwords in plaintext. Encrypt them."
+    input "sw-floor-1#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z."
+    input "sw-floor-1(config)#" "service password-encryption"
+    i "Type exit."
+    input "sw-floor-1(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
+    i "Last, show the running config"
+    input "sw-floor-1#" "show running-config"
+    i "The running config will display on the screen"
+    input "type, understood" "understood"
+    i "Great!"
+
+
 fi
 if [ $rand = 4 ]; then
     echo "four"
