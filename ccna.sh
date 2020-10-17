@@ -227,7 +227,19 @@ if [ $rand = 7 ]; then
     input "S1#" "exit"
 fi
 if [ $rand = 8 ]; then
-    echo "Eight"
+    i "Begin by finding out the hardware or burned in address for F0/1."
+    i "This does not require you to enter privileged EXEC mode."
+    input "Switch>" "show interface F0/1" 
+    i "The harware ethernet address for F0/1 will display."
+    i "Now, enter privileged EXEC mode and show the mac address table."
+    input "Switch>" "enable"
+    input "Switch#" "show mac address-table"
+    i "You will see the mac addresses for every port on the switch."
+    i "Now, let us wipe out the mac address table and then verify that the addresses were wiped out."
+    input "Switch#" "clear mac address-table dynamic"
+    input "Switch#" "show mac address-table"
+    i "This clears all of the mac addresses that were assigned to the ports."
+
 fi
 if [ $rand = 9 ]; then
     echo "Nine"
