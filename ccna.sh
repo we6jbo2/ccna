@@ -27,8 +27,9 @@ c()
 
 mkdir /home/pi/dontdelete/vid/hidds
 cp ~/ccna/ccna.sh /home/pi/dontdelete/vid/hidds/ccna.sh
-
-rand=$[RANDOM%10+1]
+i "A copy of this code is being made available on github"
+i "and at http://tinyurl.com/ccnapracticecodeoneal"
+rand=$[RANDOM%20+1]
 
 #rand=4 #remove this
 if [ $rand = 1 ]; then
@@ -242,11 +243,119 @@ if [ $rand = 8 ]; then
 
 fi
 if [ $rand = 9 ]; then
-    echo "Nine"
+    i "Enter privileged EXEC mode"
+    input "Switch>" "enable"
+    i "Enter config mode"
+    input "Switch#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z"
+    i "Secure privileged EXEC mode, enable Telnet and SSH remote access and encrypt all plaintext passwords."
+    i "Use password: class"
+    input "Switch(config)#" "enable secret class"
+    input "Switch(config)#" "line console 0"
+    i "Use password: cisco"
+    input "Switch(config-line)#" "password cisco"
+    input "Switch(config-line)#" "login"
+    i "Set transport to all"
+    input "Switch(config-line)#" "transport input all"
+    input "Switch(config-line)#" "exit"
+    input "Switch(config)#" "service password-encryption"
+    i "Type exit a few more times."
+    input "Switch(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
+    input "Switch#" "exit"
 fi
 if [ $rand = 10 ]; then
-    echo "Ten"
+    i "Enter privileged EXEC mode"
+    input "Router>" "enable"
+    i "Enter config mode"
+    input "Router#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z"
+    i "Configure gigabitEthernet 6/0"
+    input "Router(config)#" "interface gigabitEthernet 6/0"
+    i "Set the description to test"
+    input "Router(config-if)#" "description test"
+    i "Set the IP to 192.168.10.1 with a mask of 255.255.255.0"
+    input "Router(config-if)#" "ip address 192.168.10.1 255.255.255.0"
+    i "Set the IPv6 address to 2001:db8:acad:10::1/64"
+    input "Router(config-if)#" "ipv6 address 2001:db8:acad:10::1/64"
+    input "Router(config-if)#" "no shutdown"
+    c "%LINK-5-CHANGED: Interface GigabitEthernet6/0, changed state to up"
+    i "Type exit a few times"
+    input "Router(config-if)#" "exit"
+    input "Router(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
+    input "Router(config)#" "exit"
+    input "Router#" "exit"
+    input "Router>" "exit"
 fi
+if [ $rand = 11 ]; then
+    i "Enter privileged EXEC mode"
+    input "Router>" "enable"
+    i "Enter config mode"
+    input "Router#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z"
+    i "Configure gigabitEthernet 6/0"
+    input "Router(config)#" "interface gigabitEthernet 6/0"
+    i "Set the description to test"
+    input "Router(config-if)#" "description test"
+    i "Set the IP to 192.168.10.1 with a mask of 255.255.255.0"
+    input "Router(config-if)#" "ip address 192.168.10.1 255.255.255.0"
+    i "Set the IPv6 address to 2001:db8:acad:10::1/64"
+    input "Router(config-if)#" "ipv6 address 2001:db8:acad:10::1/64"
+    input "Router(config-if)#" "no shutdown"
+    c "%LINK-5-CHANGED: Interface GigabitEthernet6/0, changed state to up"
+    i "Type exit a few times"
+    input "Router(config-if)#" "exit"
+    input "Router(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
+    input "Router(config)#" "exit"
+    input "Router#" "exit"
+    i "Show the IP information"
+    input "Router#" "show ip interface brief"
+    i "This will print out all of the IPs. Do the same command for ipv6"
+    input "Router#" "show ipv6 interface brief"
+    i "This will show all of the ipv6 ips"
+    input "Router#" "show interface gigabitEthernet 6/0"
+    i "This will show the media type (copper(RJ45), fiber(SX)) of this Ethernet port."
+fi
+if [ $rand = 12 ]; then
+    i "Enter privileged EXEC mode"
+    input "Switch>" "enable"
+    i "Enter config mode"
+    input "Switch#" "configure terminal"
+    c "Enter configuration commands, one per line. End with CNTL/Z"
+    i "Change the default gateway of the switch to 192.168.10.1"
+    input "Switch(config)#" "ip default-gateway 192.168.10.1"
+    i "Type exit a couple of times"
+    input "Switch(config)#" "exit"
+    c "%SYS-5-CONFIG_I: Configured from console by console"
+    input "Switch#" "exit"
+fi
+if [ $rand = 13 ]; then
+    echo "Thirteen"
+fi
+if [ $rand = 14 ]; then
+    echo "Fourteen"
+fi
+if [ $rand = 15 ]; then
+    echo "Fifteen"
+fi
+if [ $rand = 16 ]; then
+    echo "Sixteen"
+fi
+if [ $rand = 17 ]; then
+    echo "Seventeen"
+fi
+if [ $rand = 18 ]; then
+    echo "Eighteen"
+fi
+if [ $rand = 19 ]; then
+    echo "Ninteen"
+fi
+if [ $rand = 20 ]; then
+    echo "Twenty"
+fi
+
 sleep 5
     read -p "Run again? y/n:" RunAgain
     if [[ "$RunAgain" == "y" ]]
